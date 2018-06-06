@@ -1,15 +1,36 @@
-__precompile__()
+__precompile__(true)
 
 module DBAPI
 
-using Reexport
-
-include("DBAPIBase.jl")
+include("base.jl")
 include("arrays.jl")
 
-@reexport using .DBAPIBase
-import .DBAPIBase: NotImplementedError, NotSupportedError
-import .ArrayInterfaces: ColumnarArrayInterface
 export ColumnarArrayInterface
+export cursor,
+    execute!,
+    executemany!,
+    commit,
+    rollback,
+    rows,
+    columns,
+    connection,
+    fetchintoarray!,
+    fetchintorows!,
+    fetchintocolumns!,
+    DatabaseFetcher,
+    interface,
+    DatabaseInterface,
+    DatabaseError,
+    DatabaseConnection,
+    DatabaseCursor,
+    FixedLengthDatabaseCursor,
+    DatabaseQuery,
+    ParameterQuery,
+    MultiparameterQuery,
+    SimpleStringQuery,
+    StringParameterQuery,
+    StringMultiparameterQuery,
+    DatabaseQueryError
+
 
 end # module

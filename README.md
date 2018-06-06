@@ -17,7 +17,3 @@ This interface is largely inspired by Python's DB API 2.0, which is in the
 public domain: [PEP0249](https://www.python.org/dev/peps/pep-0249).
 
 
-## Null Handling
-
-All values of type `T` that could be `null` should be returned as 
-`Nullable{T}`. 
