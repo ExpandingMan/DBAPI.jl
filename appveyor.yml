@@ -1,13 +1,7 @@
 environment:
   matrix:
-  - JULIA_URL: "https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe"
-  - JULIA_URL: "https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x86/0.4/julia-0.4.0-win32.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/0.4/julia-0.4.0-win64.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x86/0.5/julia-0.5.0-win32.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/0.5/julia-0.5.0-win64.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x86/0.6/julia-0.6.0-win32.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/0.6/julia-0.6.0-win64.exe"
+  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x86/1.0/julia-1.0.0-win32.exe"
+  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/1.0/julia-1.0.0-win64.exe"
 
 branches:
   only:
@@ -32,8 +26,8 @@ install:
 build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
-  - C:\projects\julia\bin\julia -e "versioninfo();
+  - C:\projects\julia\bin\julia -e "versioninfo(); using Pkg;
       Pkg.clone(pwd(), \"DBAPI\"); Pkg.build(\"DBAPI\")"
 
 test_script:
-  - C:\projects\julia\bin\julia --check-bounds=yes -e "Pkg.test(\"DBAPI\")"
+  - C:\projects\julia\bin\julia --check-bounds=yes -e "using Pkg; Pkg.test(\"DBAPI\")"

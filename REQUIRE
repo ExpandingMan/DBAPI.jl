@@ -1,4 +1,2 @@
-julia 0.4
-Reexport
-Iterators
-Compat 0.8.4
+julia 1.0
+DataStreams
